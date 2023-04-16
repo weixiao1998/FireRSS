@@ -1,0 +1,29 @@
+[project]
+name = "fire-rss-backend"
+version = "0.0.1"
+authors = [
+  { name="weixiao1998", email="1197749258@qq.com" },
+]
+description = "FireRSS backend"
+readme = "README.md"
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pre-commit",
+  "tox"
+]
+
+[project.urls]
+"Homepage" = "https://github.com/weixiao1998/FireRSS"
+"Source Code" = "https://github.com/weixiao1998/FireRSS"
+"Bug Tracker" = "https://github.com/weixiao1998/FireRSS/issues"
+
+[build-system]
+requires = [ "setuptools" ]
+build-backend = "setuptools.build_meta"
