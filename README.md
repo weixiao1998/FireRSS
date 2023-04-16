@@ -1,5 +1,5 @@
 # FireRSS
-better rss
+🔥 A free, open source, self-host, web-based RSS reader and aggregator
 
 ## Architecture
 #### frontend
