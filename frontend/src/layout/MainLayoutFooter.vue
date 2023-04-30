@@ -1,5 +1,5 @@
 <template>
-  <div class="footer-contianer">
+  <div>
     © 2023 FireRSS
   </div>
 </template>

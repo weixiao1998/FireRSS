@@ -1,5 +1,5 @@
 <template>
-  <div class="topbar-container">
+  <div>
     <el-row type="flex" justify="space-between">
       <el-col :span="18">
         <el-breadcrumb :separator-icon="ArrowRight">

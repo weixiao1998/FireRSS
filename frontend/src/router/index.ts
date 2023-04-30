@@ -1,5 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
+import MainLayout from '@/layout/MainLayout.vue'
+
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -7,22 +9,23 @@ const router = createRouter({
       path: '/',
       name: 'index',
       meta: {'title': 'Fire RSS'},
-      component: () => import('@/layout/LayoutMain.vue'),
+      component: MainLayout,
     },
     {
       path: '/auth',
       name: 'auth',
-      component: () => import('@/layout/LayoutMain.vue'),
+      component: MainLayout,
       children: [
         {
-          path: 'signin',
-          name: 'signin',
+          path: 'sign-in',
+          name: 'sign-in',
+          alias: ['login'],
           component: () => import('@/views/auth/SignIn.vue'),
           meta: { title: 'Sign In' },
         },
         {
-          path: 'signup',
-          name: 'signup',
+          path: 'sign-up',
+          name: 'sign-up',
           component: () => import('@/views/auth/SignUp.vue'),
           meta: { title: 'Sign Up' },
         },
