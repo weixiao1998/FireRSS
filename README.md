@@ -9,6 +9,9 @@
 - flask
 
 ## Develop
-1. `make install-dev && make run-backend`: setup backend
-2. `cd Docker && docker compose -f docker-compose.dev.yml --env-file .dev.env up -d`: setup middleware/db
-3. `cd frontend && npm install && npm run dev`: setup frontend
+0. pre install
+    - `pyenv`: python version management
+    - `volta`: JavaScript tool manager
+1. setup backend: `make install-dev && make run-backend`
+2. setup middleware/db: `cd Docker && docker compose -f docker-compose.dev.yml --env-file .dev.env up -d`
+3. setup frontend: `cd frontend && npm install && npm run dev`
