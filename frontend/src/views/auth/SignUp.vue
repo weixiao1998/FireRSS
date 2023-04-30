@@ -1,5 +1,5 @@
 <template>
   <div>
-    Register Page
+    {{ $t('base.signUp') }}
   </div>
 </template>
