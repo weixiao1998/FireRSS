@@ -1,0 +1,13 @@
+$main-color: #545c64;
+
+// menu
+$menu-color: $main-color;
+$menu-item-active-color: #ffdb7a;
+$menu-item-text-color: #fff;
+
+:export {
+    main-color: $main-color;
+    menu-color: $menu-color;
+    menu-item-active-color: $menu-item-active-color;
+    menu-item-text-color: $menu-item-text-color;
+}

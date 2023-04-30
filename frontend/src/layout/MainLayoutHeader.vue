@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="header-container-inner">
     <el-row type="flex" justify="space-between">
       <el-col :span="18">
         <el-breadcrumb :separator-icon="ArrowRight">
@@ -22,6 +22,8 @@ import { useRouter, useRoute } from 'vue-router';
 
 const route = useRoute();
 const router = useRouter();
+
+// breadcrumb
 let breadcrumbList: { title: string, path: string }[] = reactive(getBreadcrumbList());
 
 watch(

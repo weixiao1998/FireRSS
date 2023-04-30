@@ -1,7 +1,7 @@
 <template>
-  <div>
-    <el-menu active-text-color="#ffd04b" background-color="#545c64" class="el-menu-vertical-demo" default-active="2"
-      text-color="#fff" @open="handleOpen" @close="handleClose">
+  <div class="aside-container-inner">
+    <el-menu :active-text-color="scssVars['menu-item-active-color']" :background-color="scssVars['menu-color']"
+      :text-color="scssVars['menu-item-text-color']" default-active="2" @open="handleOpen" @close="handleClose">
       <el-sub-menu index="1">
         <template #title>
           <el-icon>
@@ -42,12 +42,14 @@
 </template>
 
 <script lang="ts" setup>
+import scssVars from '@/styles/variables.module.scss'
 import {
   Document,
   Menu as IconMenu,
   Location,
   Setting,
 } from '@element-plus/icons-vue'
+
 const handleOpen = (key: string, keyPath: string[]) => {
   console.log(key, keyPath)
 }

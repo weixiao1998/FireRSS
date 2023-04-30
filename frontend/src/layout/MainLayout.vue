@@ -24,12 +24,17 @@ import LayoutFooter from './MainLayoutFooter.vue';
 </script>
 
 <style lang="scss" scoped>
+@import '@/styles/variables.module.scss';
+
 .header-container {
   padding: 1rem;
+  height: 40px;
+  box-shadow: 0 1px 4px rgba(0,21,41,.08);
 }
 
 .aside-container {
   height: 100vh;
   width: auto;
+  background-color: $menu-color;
 }
 </style>
