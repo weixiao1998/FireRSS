@@ -2,3 +2,6 @@ Flask==2.2.3
 flask-cors==3.0.10
 peewee==3.16.2
 flask-smorest==0.41.0
+PyMySQL==1.0.3
+peewee-migrate==1.7.1
+bcrypt==4.0.1

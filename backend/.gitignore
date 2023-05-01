@@ -22,3 +22,6 @@ coverage.xml
 .hypothesis/
 .pytest_cache/
 cover/
+
+# config
+**/config.py
