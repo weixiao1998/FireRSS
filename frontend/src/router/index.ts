@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 
 import MainLayout from '@/layout/MainLayout.vue'
+import EmptyLayout from '@/layout/EmptyLayout.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -14,7 +15,7 @@ const router = createRouter({
     {
       path: '/auth',
       name: 'auth',
-      component: MainLayout,
+      component: EmptyLayout,
       children: [
         {
           path: 'sign-in',
