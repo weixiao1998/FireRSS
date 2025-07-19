@@ -1,0 +1,25 @@
+services:
+  mysql:
+    image: "mysql:8"
+    restart: always
+    ports:
+      - "$FRSS_DEV_MYSQL_PORT:3306"
+    environment:
+      MYSQL_DATABASE: "$FRSS_DB_NAME"
+      MYSQL_USER: "$FRSS_DB_USER"
+      MYSQL_PASSWORD: "$FRSS_DB_PASSWORD"
+      MYSQL_ROOT_PASSWORD: "$FRSS_DB_PASSWORD"
+    volumes:
+      - mysql:/var/lib/mysql
+  redis:
+    image: "redis:7.4-alpine"
+    restart: always
+    ports:
+      - "$FRSS_DEV_REDIS_PORT:6379"
+    volumes:
+      - redis:/data
+
+
+volumes:
+  mysql:
+  redis:
