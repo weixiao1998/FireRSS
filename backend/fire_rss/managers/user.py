@@ -1,38 +1,46 @@
 import bcrypt
-from fastapi import Depends
-from sqlmodel import select
+from sqlmodel import Session, select
 
-from ..base import const, errors
-from ..base.db import get_session
+from ..base import const, errors, utils
 from ..models.user import User
-
-dep_get_session = Depends(get_session)
 
 
 class UserManager:
-    @classmethod
-    async def create_user(
-        cls,
+    def __init__(self, session):
+        self.session: Session = session
+
+    def create_user(
+        self,
         name,
         raw_password,
+        nick_name=None,
         status=const.UserStatus.PENDING,
         user_type=const.UserType.NORMAL,
-        session=dep_get_session,
     ):
-        user = await session.exec(select(User).where(User.name == name))
-        user = User.select().where(User.name == name).for_update().first()
+        user = self.session.exec(select(User).where(User.name == name)).first()
         if user is not None:
             raise errors.UserExistsError
         if not isinstance(raw_password, bytes):
             raw_password = raw_password.encode()
-        password = bcrypt.hashpw(raw_password, bcrypt.gensalt())
-        user = User.create(name=name, password=password, status=status, type=user_type)
+        hashed_password = bcrypt.hashpw(raw_password, bcrypt.gensalt())
+        user = User(
+            name=name,
+            hashed_password=hashed_password,
+            status=status,
+            type=user_type,
+            nick_name=nick_name if nick_name else name,
+            create_time=utils.utc_now(),
+        )
+        self.session.add(user)
+        self.session.commit()
         return user
 
-    @classmethod
-    def get_user_list(cls, page_size, page_num, name=None):
+    def get_user_list(self, page_size, page_num, name=None):
+        qs = select(User)
         query = []
         if name:
             query.append(User.name.contains(name))
-        users = list(User.select().where(*query if query else [None]))
+        if query:
+            qs = qs.where(*query)
+        users = self.session.exec(qs).all()
         return users

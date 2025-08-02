@@ -1,10 +1,19 @@
 from fastapi import APIRouter
 
-from ..managers.user import UserManager
+import fire_rss.models as m
+from fire_rss.base.db import SessionDep
+from fire_rss.managers.user import UserManager
 
 router = APIRouter(prefix="/api/v1/users")
 
 
 @router.get("/")
-async def get_user_list(name: str | None = None, page_size: int = 20, page_num: int = 1):
-    return UserManager.get_user_list(page_size, page_num, name=name)
+async def get_user_list(
+    session: SessionDep, name: str | None = None, page_size: int = 20, page_num: int = 1
+) -> list[m.UserOut]:
+    return UserManager(session).get_user_list(page_size, page_num, name=name)
+
+
+@router.post("/sign_up")
+async def user_sign_up(session: SessionDep, name: str, raw_password: str) -> m.UserOut:
+    return UserManager(session).create_user(name, raw_password)

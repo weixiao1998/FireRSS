@@ -1,14 +1,24 @@
-from contextlib import asynccontextmanager
+from contextlib import contextmanager
+from typing import Annotated
 
-from sqlalchemy.ext.asyncio import async_sessionmaker, create_async_engine
+from fastapi import Depends
+from sqlalchemy import create_engine
+from sqlmodel import Session
 
 from ..config import config
 
-engine = create_async_engine(**config.DB_ENGINE_CONFIG)
-AsyncSessionFactory = async_sessionmaker(bind=engine, **config.DB_SESSION_MAKER_CONFIG)
+engine = create_engine(**config.DB_ENGINE_CONFIG)
 
 
-@asynccontextmanager
-async def get_session():
-    async with AsyncSessionFactory() as session:
+def get_session():
+    with Session(engine) as session:
         yield session
+
+
+@contextmanager
+def db_sesion():
+    with Session(engine) as session:
+        yield session
+
+
+SessionDep = Annotated[Session, Depends(get_session)]

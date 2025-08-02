@@ -6,7 +6,7 @@ class BaseError(Exception):
 
     def __init__(self, data=None) -> None:
         self.data = data
-        super().__init__(f"code: {self.code}, msg: {self.msg}, data:{data}")
+        super().__init__(f"[error] code: {self.code}, msg: {self.msg}, data:{data}")
 
 
 class RequestArgsError(BaseError):

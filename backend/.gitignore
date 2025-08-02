@@ -24,4 +24,4 @@ coverage.xml
 cover/
 
 # config
-**/config.py
+config.py

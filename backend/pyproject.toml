@@ -1,6 +1,6 @@
 [project]
 name = "fire-rss-backend"
-version = "0.0.1"
+dynamic = ["version"]
 authors = [{ name="weixiao1998" }]
 description = "FireRSS backend"
 readme = "README.md"
@@ -13,8 +13,8 @@ classifiers = [
 
 dependencies = [
     "fastapi[standard]==0.116.1",
-    "sqlalchemy[asyncio]==2.0.41",
-    "pymysql==1.1.1",
+    "sqlalchemy==2.0.41",
+    "mysqlclient==2.2.7",
     "bcrypt==4.3.0",
     "sqlmodel==0.0.24",
 ]
@@ -27,6 +27,11 @@ dependencies = [
 [build-system]
 requires = [ "setuptools" ]
 build-backend = "setuptools.build_meta"
+
+[tool.setuptools.dynamic]
+version = {attr = "fire_rss.__version__"}
+
+[tool.setuptools_scm]
 
 [project.optional-dependencies]
 dev = [

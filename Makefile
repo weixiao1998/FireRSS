@@ -1,13 +1,13 @@
 help:
 		@echo Usage:
-		@echo make install-dev
-		@echo make run-backend
+		@echo make install-backend-dev
+		@echo make run-backend-dev
 
-install-dev:
+install-backend-dev:
 		python3 -m venv venv --prompt FireRSS
 		venv/bin/pip install -U pip
-		venv/bin/pip install -e backend[dev]
+		venv/bin/pip install -e 'backend[dev]'
 		venv/bin/pre-commit install --install-hooks
 
-run-backend:
-		venv/bin/python -m fastapi dev fire_rss.main:app
+run-backend-dev:
+		venv/bin/python -m fastapi dev backend/fire_rss/main.py
