@@ -15,5 +15,5 @@ async def get_user_list(
 
 
 @router.post("/sign_up")
-async def user_sign_up(session: SessionDep, name: str, raw_password: str) -> m.UserOut:
-    return UserManager(session).create_user(name, raw_password)
+async def user_sign_up(session: SessionDep, user: m.UserSignUp) -> m.UserOut:
+    return UserManager(session).create_user(user.name, user.password)

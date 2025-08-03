@@ -1,10 +1,15 @@
 from fastapi import FastAPI, Request
+from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from .base.errors import BaseError
+from .config import config
 from .routers import api_routers
 
 app = FastAPI()
+
+# Add CORS middleware
+app.add_middleware(CORSMiddleware, **config.CORS_CONFIG)
 
 
 @app.exception_handler(BaseError)

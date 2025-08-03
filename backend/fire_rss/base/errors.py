@@ -15,6 +15,18 @@ class RequestArgsError(BaseError):
     msg = "request args invalid"
 
 
+class UnknownError(BaseError):
+    code = 90001
+    http_code = 400
+    msg = "unknown error"
+
+
+class NetworkError(BaseError):
+    code = 90002
+    http_code = 400
+    msg = "network error"
+
+
 class UserExistsError(BaseError):
     code = 20100
     msg = "user already exists"
