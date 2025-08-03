@@ -18,3 +18,13 @@ class RequestArgsError(BaseError):
 class UserExistsError(BaseError):
     code = 20100
     msg = "user already exists"
+
+
+class OptionExistsError(BaseError):
+    code = 20200
+    msg = "option already exists"
+
+
+class OptionNotFoundError(BaseError):
+    code = 20201
+    msg = "option not found"
